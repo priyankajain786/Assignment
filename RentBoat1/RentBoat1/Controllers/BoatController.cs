@@ -46,7 +46,7 @@ namespace RentBoat1.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="BId,BNo,Availability")] Register register)
+        public ActionResult Create([Bind(Include="BId,BNo,Availability,BImage")] Register register)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace RentBoat1.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "BId,BNo,Availability")] Register register)
+        public ActionResult Edit([Bind(Include = "BId,BNo,Availability,BImage")] Register register)
         {
             if (ModelState.IsValid)
             {

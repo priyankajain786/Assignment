@@ -19,6 +19,10 @@
             <select class="form-control" id="BoatNo" name="BoatNo" placeholder="BoatNo" required>
                 <option>Please select</option>
             </select>
+            <span>
+            <label class="form-label">Boat Image</label>
+            <img class="form-control" id="BoatImage" src="" style="height:100px; width:100px"/>
+            </span>
         </div>
         <div class="form-group">
             <label class="form-label">Customer Id</label>
@@ -57,7 +61,7 @@
     <script src="~/Scripts/jquery.validate.js"></script>
 
     <script>
-        GetBoat();
+        GetBoat();        
         load();
         function load()
         {
@@ -80,17 +84,18 @@
                     {
                         $("#BoatNo").append($("<option/>", {
                             text: data[i].BNo
-                        }))
+                        }));                      
                     }
                 }
                 });
-    }
+        }        
 
-    $("#BoatNo").change(function () {
+        $("#BoatNo").change(function () {   
+        GetImage();
         available();
     });
 
-    function available() {
+        function available() {
         $.ajax({
             type: 'POST',
             url: '/rental/GetAvailable?BoatNo=' + $("#BoatNo").val(),
@@ -117,7 +122,19 @@
             }
         });
 
-    }
+        }
+        function GetImage() {
+            $.ajax({
+                type: 'POST',
+                url: '/rental/GetImage?BoatNo=' + $("#BoatNo").val(),
+                datatype: 'JSON',
+                success: function (data) {
+                    console.log(data);
+                    var Image = data;
+                    $('#BoatImage[src=""]').attr("src", Image);
+                }
+            });
+        }
 
     GetCustomer();
 

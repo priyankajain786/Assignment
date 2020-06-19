@@ -22,7 +22,7 @@ namespace RentBoat1.Controllers
             var boat = db.Registers.ToList();
             return Json(boat,JsonRequestBehavior.AllowGet);
         }
-
+                
         [HttpPost]
         public ActionResult GetId(int Id)
         {
@@ -35,6 +35,13 @@ namespace RentBoat1.Controllers
         {
             var boatavailable = (from s in db.Registers where s.BNo == BoatNo select s.Availability).ToList();
             return Json(boatavailable, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult GetImage(string BoatNo)
+        {
+            var boatImage = (from s in db.Registers where s.BNo == BoatNo select s.BImage).ToList();
+            return Json(boatImage, JsonRequestBehavior.AllowGet);
         }
 
         //[HttpPost]

@@ -17,5 +17,6 @@ namespace RentBoat1.Models
         public int BId { get; set; }
         public string BNo { get; set; }
         public string Availability { get; set; }
+        public string BImage { get; set; }
     }
 }

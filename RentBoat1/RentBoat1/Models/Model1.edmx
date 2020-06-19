@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="RentBoatModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="RentBoatModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Customer">
           <Key>
             <PropertyRef Name="CId" />
@@ -20,6 +20,7 @@
           <Property Name="BId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="BNo" Type="varchar" MaxLength="50" />
           <Property Name="Availability" Type="varchar" MaxLength="50" />
+          <Property Name="BImage" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Rent">
           <Key>
@@ -67,6 +68,7 @@
           <Property Name="BId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="BNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Availability" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityContainer Name="RentBoatEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Customers" EntityType="Self.Customer" />
@@ -113,6 +115,7 @@
           <EntitySetMapping Name="Registers">
             <EntityTypeMapping TypeName="RentBoatModel.Register">
               <MappingFragment StoreEntitySet="Register">
+                <ScalarProperty Name="BImage" ColumnName="BImage" />
                 <ScalarProperty Name="BId" ColumnName="BId" />
                 <ScalarProperty Name="BNo" ColumnName="BNo" />
                 <ScalarProperty Name="Availability" ColumnName="Availability" />

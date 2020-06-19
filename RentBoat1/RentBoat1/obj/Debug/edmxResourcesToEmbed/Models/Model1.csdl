@@ -15,6 +15,7 @@
     <Property Name="BId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="BNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Availability" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityContainer Name="RentBoatEntities1" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Customers" EntityType="Self.Customer" />

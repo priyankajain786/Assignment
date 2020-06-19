@@ -13,6 +13,7 @@
     <EntitySetMapping Name="Registers">
       <EntityTypeMapping TypeName="RentBoatModel.Register">
         <MappingFragment StoreEntitySet="Register">
+          <ScalarProperty Name="BImage" ColumnName="BImage" />
           <ScalarProperty Name="BId" ColumnName="BId" />
           <ScalarProperty Name="BNo" ColumnName="BNo" />
           <ScalarProperty Name="Availability" ColumnName="Availability" />
