@@ -1,0 +1,149 @@
+﻿@model RentBoat1.Models.Rent
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+    @using (Html.BeginForm("Save", "Return", FormMethod.Post, new { id = "popupForm" }))
+    {
+
+        <div>
+
+            <h1>
+                Return Detail
+            </h1>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Boat No</label>
+            <select class="form-control" id="BoatNo" name="BoatNo" placeholder="BoatNo" required>
+                <option>Please select</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Customer Id</label>
+            <input type="text" id="CustId" name="CustId" class="form-control" placeholder="CustId" required />
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Customer Name</label>
+            <input type="text" id="CustName" name="CustName" class="form-control" placeholder="CustName" required />
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Returned</label>
+            <input type="text" id="Returned" name="Returned" class="form-control" placeholder="Returned" required />
+        </div>
+
+        @*<div class="form-group">
+            <label class="form-label">Start Date</label>
+            <input type="date" id="StartDate" name="StartDate" class="form-control" placeholder="StartDate" required />
+        </div>*@
+        <div class="form-group">
+            <label class="form-label">Return Date</label>
+            <input type="date" id="ReturnDate" name="ReturnDate" class="form-control" placeholder="ReturnDate" required />
+        </div>
+        <div class="form-group">
+            <input id="btnSave" type="submit" value="Save" class="btn btn-success">
+        </div>
+
+    }
+</div>
+
+@section scripts
+{
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+
+    <script>
+        GetBoat();
+        load();
+        function load() {
+            $("#CustId").attr("disabled", "disabled");
+            $("#CustName").attr("disabled", "disabled");
+            $("#Returned").attr("disabled", "disabled");
+            $("#ReturnDate").attr("disabled", "disabled");            
+        }
+        function GetBoat() {
+            $.ajax({
+                type: 'GET',
+                url: '/return/GetBoat',
+                datatype: 'JSON',
+                success: function (data) {
+                    console.log(data);
+                    for (var i = 0; data.length; i++) {
+                        $("#BoatNo").append($("<option/>", {
+                            text: data[i].BNo
+                        }))
+                    }
+                }
+            });
+        }
+
+        $("#BoatNo").change(function () {
+            available();
+        });
+
+        function available() {
+            $.ajax({
+                type: 'POST',
+                url: '/return/GetAvailable?BoatNo=' + $("#BoatNo").val(),
+                datatype: 'JSON',
+                success: function (data) {
+                    console.log(data);
+                    var avail = data;
+                    if (avail == "No") {
+                        $("#CustId").removeAttr('disabled');
+                        $("#CustName").removeAttr('disabled');
+                        $("#Returned").removeAttr('disabled');
+                        $("#ReturnDate").removeAttr('disabled');                        
+                    }
+                    else {
+                        $("#CustId").attr("disabled", "disabled");
+                        $("#CustName").attr("disabled", "disabled");
+                        $("#Returned").attr("disabled", "disabled");
+                        $("#ReturnDate").attr("disabled", "disabled");                        
+                    }
+                }
+            });
+
+        }
+
+        GetCustomer();
+
+        function GetCustomer() {
+            $("#CustId").keyup(function (e) {
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/return/GetId?Id=' + $("#CustId").val(),
+                    datatype: 'JSON',
+                    success: function (data) {
+                        console.log(data);
+                        $("#CustName").val(data);
+                    }
+                });
+
+            });
+        }
+
+        $("#btnSave").click(function () {
+            Save();
+        });
+        function Save() {
+            $.ajax({
+                type: 'POST',
+                url: '/rental/Save?BoatNo=' + $("#BoatNo").val() + 'CustId' + $("#CustId").val() + 'Returned' + $("#Returned").val() + 'ReturnDate' + $("#ReturnDate").val(),
+                datatype: 'JSON',
+                success: function (data) {
+                    console.log(data);
+                }
+            }
+          )
+        }
+    </script>
+}
+
+
+

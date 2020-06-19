@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="RentBoatModelStoreContainer" CdmEntityContainer="RentBoatEntities1">
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="RentBoatModel.Customer">
+        <MappingFragment StoreEntitySet="Customer">
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="CId" ColumnName="CId" />
+          <ScalarProperty Name="CName" ColumnName="CName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Registers">
+      <EntityTypeMapping TypeName="RentBoatModel.Register">
+        <MappingFragment StoreEntitySet="Register">
+          <ScalarProperty Name="BId" ColumnName="BId" />
+          <ScalarProperty Name="BNo" ColumnName="BNo" />
+          <ScalarProperty Name="Availability" ColumnName="Availability" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Returns">
+      <EntityTypeMapping TypeName="RentBoatModel.Return">
+        <MappingFragment StoreEntitySet="Return">
+          <ScalarProperty Name="ReturnDate" ColumnName="ReturnDate" />
+          <ScalarProperty Name="Returned" ColumnName="Returned" />
+          <ScalarProperty Name="CId" ColumnName="CId" />
+          <ScalarProperty Name="BId" ColumnName="BId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rents">
+      <EntityTypeMapping TypeName="RentBoatModel.Rent">
+        <MappingFragment StoreEntitySet="Rent">
+          <ScalarProperty Name="Enddate" ColumnName="Enddate" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="Rent1" ColumnName="Rent" />
+          <ScalarProperty Name="CId" ColumnName="CId" />
+          <ScalarProperty Name="BId" ColumnName="BId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RentBoatModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="CId" />
+    </Key>
+    <Property Name="CId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Mobile" Type="Decimal" Precision="10" Scale="0" />
+  </EntityType>
+  <EntityType Name="Register">
+    <Key>
+      <PropertyRef Name="BId" />
+    </Key>
+    <Property Name="BId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Availability" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="RentBoatEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Customers" EntityType="Self.Customer" />
+    <EntitySet Name="Registers" EntityType="Self.Register" />
+    <EntitySet Name="Returns" EntityType="RentBoatModel.Return" />
+    <EntitySet Name="Rents" EntityType="RentBoatModel.Rent" />
+  </EntityContainer>
+  <EntityType Name="Return">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CId" Type="Int32" />
+    <Property Name="Returned" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ReturnDate" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="Rent">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CId" Type="Int32" />
+    <Property Name="Rent1" Type="Int32" />
+    <Property Name="StartDate" Type="DateTime" Precision="0" />
+    <Property Name="Enddate" Type="DateTime" Precision="0" />
+  </EntityType>
+</Schema>
